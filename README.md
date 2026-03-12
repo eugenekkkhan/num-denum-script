@@ -8,7 +8,7 @@
 
 2. Зайдите в виртуальное окружение: `source venv/bin/activate`
 
-3. Установите зависимости `pip install requirements.txt`
+3. Установите зависимости `pip install -r requirements.txt`
 
 4. Запустите сам скрипт: `python3 main.py`
 
