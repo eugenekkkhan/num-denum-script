@@ -6,7 +6,6 @@ import os
 import asyncio
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from pynput import keyboard
 
 load_dotenv()
 
@@ -118,18 +117,11 @@ async def main() -> None:
     client = TelegramClient("session_name", API_ID, API_HASH)
     await client.start(phone=PHONE_NUMBER)
     print("Client started successfully!")
-    # dialogs = await client.get_dialogs()
-    # print("Available chats:")
-    # for dialog in dialogs:
-    #     if isinstance(dialog.entity, Channel):
-    #         print(f"{dialog.id}: {dialog.name}")
 
-    state_of_interface = ""
-    with keyboard.Events() as events:
-        while True:
-            await update_chats(client)
-            seconds_to_sleep = CHECK_INTERVAL - int(time_spent_in_current_week().total_seconds())
-            await custom_sleep(seconds_to_sleep)
+    while True:
+        await update_chats(client)
+        seconds_to_sleep = CHECK_INTERVAL - int(time_spent_in_current_week().total_seconds())
+        await custom_sleep(seconds_to_sleep)
 
 
 if __name__ == "__main__":
